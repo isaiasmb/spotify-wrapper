@@ -1,0 +1,34 @@
+{
+  "name": "tdd-js",
+  "version": "1.0.0",
+  "description": "Estudos de TDD em JS",
+  "main": "index.js",
+  "dependencies": {
+    "user": "^0.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.5"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src/*.js",
+    "prepush": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaiasmb/tdd-js.git"
+  },
+  "keywords": [
+    "js",
+    "tdd",
+    "library"
+  ],
+  "author": "Isaias Morona <isaiasbuscarino@hotmail.com> (https://github.com/isaiasmb)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaiasmb/tdd-js/issues"
+  },
+  "homepage": "https://github.com/isaiasmb/tdd-js#readme"
+}
