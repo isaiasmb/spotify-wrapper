@@ -1,5 +1,7 @@
 # Spotify Wrapper
 
+[![Build Status](https://travis-ci.org/isaiasmb/spotify-wrapper.svg?branch=master)](https://travis-ci.org/isaiasmb/spotify-wrapper)
+
 A wrapper to work with the [Spotify Web API](https://developer.spotify.com/web-api/).
 
 ## Browser Support
