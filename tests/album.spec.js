@@ -3,7 +3,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 
 import { getAlbum, getAlbums, getAlbumTracks } from '../src/album'
-import { API_URL } from '../src/config'
+import API_URL from '../src/config'
 
 chai.use(sinonChai)
 

@@ -15,5 +15,9 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    semi: ['error', 'never'],
+    'arrow-parens': ['error', 'as-needed'],
+    'comma-dangle': ['error', 'never'],
+    'arrow-body-style': ['error', 'as-needed']
   },
 };
