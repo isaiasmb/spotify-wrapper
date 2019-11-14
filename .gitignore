@@ -89,4 +89,6 @@ typings/
 
 package-lock.json
 
-
+# Compiled Lib
+lib
+dist
