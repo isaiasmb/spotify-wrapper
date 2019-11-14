@@ -10,7 +10,7 @@ import {
   searchPlaylists
 } from '../src/search'
 
-import API_URL from '../src/config'
+import { API_URL } from '../src/config'
 
 chai.use(sinonChai)
 

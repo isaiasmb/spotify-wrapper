@@ -1,8 +1,8 @@
 {
-  "name": "spotify-wrapper",
-  "version": "1.0.1",
+  "name": "spotify-wrapper-isaias",
+  "version": "1.0.2",
   "description": "A wrapper to work with the Spotify Web API",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "user": "^0.0.0"
   },
@@ -20,6 +20,10 @@
     "test:coverage": "nyc npm test",
     "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "nyc": {
     "functions": 80,
     "lines": 80,
