@@ -2,18 +2,22 @@ import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 
-import { getAlbum, getAlbums, getAlbumTracks } from '../src/album'
 import { API_URL } from '../src/config'
+import SpotifyWrapper from '../src/index'
 
 chai.use(sinonChai)
 
 global.fetch = require('node-fetch')
 
 describe('Album', () => {
-
+  let spotify
   let fetchedStub
 
   beforeEach(() => {
+    spotify = new SpotifyWrapper({
+      token: 'foo'
+    })
+
     fetchedStub = sinon.stub(global, 'fetch')
     fetchedStub.resolves({ json: () => ({ album: 'name' }) })
   })
@@ -24,29 +28,29 @@ describe('Album', () => {
 
   describe('smoke tests', () => {
     it('should have getAlbum method', () => {
-      expect(getAlbum).to.exist
+      expect(spotify.album.getAlbum).to.exist
     })
 
-    it('should have getAlbumTracks method', () => {
-      expect(getAlbumTracks).to.exist
+    it('should have getTracks method', () => {
+      expect(spotify.album.getTracks).to.exist
     })
 
     describe('getAlbum', () => {
       it('should call fetch method', () => {
-        const albums = getAlbum()
+        const albums = spotify.album.getAlbum()
         expect(fetchedStub).to.have.been.calledOnce
       })
 
       it('should call fetch with the correct URL', () => {
-        const album = getAlbum('4aawyAB9vmqN3uQ7FjRGTy')
+        const album = spotify.album.getAlbum('4aawyAB9vmqN3uQ7FjRGTy')
         expect(fetchedStub).to.have.been.calledWith(`${API_URL}/albums/4aawyAB9vmqN3uQ7FjRGTy`)
 
-        const album2 = getAlbum('4aawyAB9vmqN3uQ7FjRGTk')
+        const album2 = spotify.album.getAlbum('4aawyAB9vmqN3uQ7FjRGTk')
         expect(fetchedStub).to.have.been.calledWith(`${API_URL}/albums/4aawyAB9vmqN3uQ7FjRGTk`)
       })
 
       it('should return the correct data from Promise', () => {
-        const album = getAlbum('4aawyAB9vmqN3uQ7FjRGTy')
+        const album = spotify.album.getAlbum('4aawyAB9vmqN3uQ7FjRGTy')
         album.then(data => {
           expect(data).to.be.eql({ album: 'name' }) // Entender pq o teste fica verde mesmo com um erro de assertion
         })
@@ -55,39 +59,39 @@ describe('Album', () => {
 
     describe('getAlbums', () => {
       it('should call fetch method', () => {
-        const albums = getAlbums()
+        const albums = spotify.album.getAlbums()
         expect(fetchedStub).to.have.been.calledOnce
       })
 
       it('should call fetch with the correct URL', () => {
-        const albums = getAlbums(['4aawyAB9vmqN3uQ7FjRGTy', '4aawyAB9vmqN3uQ7FjRGTk'])
+        const albums = spotify.album.getAlbums(['4aawyAB9vmqN3uQ7FjRGTy', '4aawyAB9vmqN3uQ7FjRGTk'])
         expect(fetchedStub).to.have.been.calledWith(`${API_URL}/albums/?ids=4aawyAB9vmqN3uQ7FjRGTy,4aawyAB9vmqN3uQ7FjRGTk`)
       })
 
       it('should return the correct data from Promise', () => {
-        const albums = getAlbums(['4aawyAB9vmqN3uQ7FjRGTy', '4aawyAB9vmqN3uQ7FjRGTk'])
-        .then(data => {
-          expect(data).to.be.eql({ album: 'name' })
-        })
+        const albums = spotify.album.getAlbums(['4aawyAB9vmqN3uQ7FjRGTy', '4aawyAB9vmqN3uQ7FjRGTk'])
+          .then(data => {
+            expect(data).to.be.eql({ album: 'name' })
+          })
       })
     })
 
-    describe('getAlbumTracks', () => {
+    describe('getTracks', () => {
       it('should call fetch method', () => {
-        const tracks = getAlbumTracks()
+        const tracks = spotify.album.getTracks()
         expect(fetchedStub).to.have.been.calledOnce
       })
 
       it('should call fetch with the correct URL', () => {
-        const tracks = getAlbumTracks('4aawyAB9vmqN3uQ7FjRGTy')
+        const tracks = spotify.album.getTracks('4aawyAB9vmqN3uQ7FjRGTy')
         expect(fetchedStub).to.have.been.calledWith(`${API_URL}/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks`)
       })
 
       it('should return the correct data from Promise', () => {
-        const tracks = getAlbumTracks('4aawyAB9vmqN3uQ7FjRGTy')
-        .then(data => {
-          expect(data).to.be.eql({ album: 'name' })
-        })
+        const tracks = spotify.album.getTracks('4aawyAB9vmqN3uQ7FjRGTy')
+          .then(data => {
+            expect(data).to.be.eql({ album: 'name' })
+          })
       })
     })
   })

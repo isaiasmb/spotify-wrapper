@@ -14,7 +14,10 @@
   <script src="../dist/spotify-wrapper.umd.js"></script>
 
   <script>
-    const albums = spotifyWrapper.searchAlbums('Incubus')
+    const spotify = new spotifyWrapper({
+      token: 'BQDdABTywDRGOsNcAIzr8euigHy0qbFFi5hLFpI7hJg4PjhIF88OszwsDOZxyBjhMIGGjSqO0GaZATOBOUaHiiKgZSaF5p6SspcDP0WhLuqBPJg5wEPBnCtxFFN2mkvOEml9J_xH-9djzHuGKJovxA'
+    })
+    const albums = spotify.search.albums('Slipknot')
     const albumsEl = document.getElementById('albums')
 
     albums.then(data => {
