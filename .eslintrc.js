@@ -18,6 +18,7 @@ module.exports = {
     semi: ['error', 'never'],
     'arrow-parens': ['error', 'as-needed'],
     'comma-dangle': ['error', 'never'],
-    'arrow-body-style': ['error', 'as-needed']
+    'arrow-body-style': ['error', 'as-needed'],
+    'space-before-function-paren': ['error', 'always']
   },
 };
